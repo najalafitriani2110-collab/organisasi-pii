@@ -179,7 +179,7 @@
 
     <!-- Footer -->
     <footer class="bg-slate-900 text-white py-8 text-center text-xs text-slate-400">
-        &copy; 2026 PW PII Banten. Struktur Kepengurusan Resmi.
+        &copy; 2026 PW  PII Banten. Struktur Kepengurusan Resmi.
     </footer>
 
 </body>
