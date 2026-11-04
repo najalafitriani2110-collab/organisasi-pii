@@ -15,23 +15,27 @@
 
     <!-- Navigation Bar -->
     <nav class="bg-white border-b border-sky-100 shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center relative z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+            <!-- Logo PII Banten -->
             <a href="{{ route('home') }}" class="font-bold text-lg md:text-xl tracking-wide flex items-center gap-2">
                 <span class="bg-sky-500 text-white px-2 py-1 rounded-lg font-extrabold text-xs md:text-sm shadow-sm">PII</span>
                 <span class="text-sky-950 font-extrabold">PW PII Banten</span>
             </a>
             
-           <div class="hidden lg:flex space-x-5 text-sm font-semibold text-gray-600">
-    <a href="{{ route('home') }}" class="hover:text-sky-600 transition">Halaman Muka</a>
-    <a href="{{ route('about') }}" class="hover:text-sky-600 transition">Tentang Kami</a>
-    <a href="{{ route('kepengurusan') }}" class="hover:text-sky-600 transition">Kepengurusan</a>
-    <a href="{{ route('program_kerja') }}" class="hover:text-sky-600 transition">Program Kerja</a>
-    <a href="{{ route('berita') }}" class="hover:text-sky-600 transition">Berita</a>
-    <a href="{{ route('dokumen') }}" class="hover:text-sky-600 transition">Pusat Informasi & Dokumen</a>
-    <a href="{{ route('kontak') }}" class="hover:text-sky-600 transition">Kontak</a>
-</div>
+            <!-- Menu Navigasi Sesuai Gambar -->
+            <div class="hidden lg:flex space-x-5 text-sm font-semibold text-gray-600">
+                <a href="{{ route('home') }}" class="hover:text-sky-600 transition">Halaman Muka</a>
+                <a href="{{ route('about') }}" class="hover:text-sky-600 transition">Tentang Kami</a>
+                <a href="#" class="hover:text-sky-600 transition">Kepengurusan</a>
+                <a href="#" class="hover:text-sky-600 transition">Program Kerja</a>
+                <a href="#" class="hover:text-sky-600 transition">Berita</a>
+                <a href="#" class="hover:text-sky-600 transition">Pusat Informasi & Dokumen</a>
+                <a href="#" class="hover:text-sky-600 transition">Kontak</a>
+            </div>
+
+            <!-- Tombol Login -->
             <div>
-                <a href="{{ route('login') }}" class="bg-sky-500 hover:bg-sky-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition shadow-sm hover:shadow relative z-50">
+                <a href="{{ route('login') }}" class="bg-sky-500 hover:bg-sky-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-xl transition shadow-sm hover:shadow">
                     Login
                 </a>
             </div>

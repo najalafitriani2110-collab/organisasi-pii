@@ -1,44 +1,68 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Anggota - PW PII Banten</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-800 antialiased flex items-center justify-center min-h-screen">
 
-@section('title', 'Login Anggota - PII')
-
-@section('content')
-<div class="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-sm border border-sky-100">
-        <div class="text-center mb-8">
-            <div class="w-12 h-12 bg-sky-100 text-sky-500 font-extrabold text-xl rounded-xl flex items-center justify-center mx-auto mb-3">
-                PII
+    <div class="max-w-md w-full mx-4">
+        <!-- Card Login -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden p-8 border border-slate-100">
+            
+            <!-- Logo & Header -->
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-blue-950 text-white rounded-2xl mx-auto flex items-center justify-center font-extrabold text-2xl shadow-lg mb-4">
+                    PII
+                </div>
+                <h2 class="text-2xl font-bold text-blue-950">Login Anggota</h2>
+                <p class="text-sm text-slate-500 mt-1">Portal Akses KTA & Layanan Kader PW PII Banten</p>
             </div>
-            <h2 class="text-2xl font-bold text-sky-950">Masuk ke Portal PII</h2>
-            <p class="text-sm text-sky-600 mt-1">Masukkan email dan kata sandi anggota</p>
+
+            <!-- Form Login -->
+            <form action="/login" method="POST">
+                @csrf
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Nomor Induk Anggota (NIA) / Email</label>
+                        <input type="text" name="identity" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent text-sm transition" placeholder="Masukkan NIA atau email kamu">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Password</label>
+                        <input type="password" name="password" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent text-sm transition" placeholder="••••••••">
+                    </div>
+
+                    <div class="flex items-center justify-between text-sm">
+                        <label class="flex items-center text-slate-600">
+                            <input type="checkbox" name="remember" class="rounded border-slate-300 text-blue-900 focus:ring-blue-900 mr-2">
+                            Ingat saya
+                        </label>
+                        <a href="#" class="text-blue-900 font-semibold hover:underline">Lupa password?</a>
+                    </div>
+
+                    <button type="submit" class="w-full bg-blue-950 hover:bg-blue-900 text-white font-bold py-3 rounded-xl shadow-lg transition duration-200 text-sm">
+                        Masuk ke Akun
+                    </button>
+                </div>
+            </form>
+
+            <!-- Kembali ke Beranda -->
+            <div class="mt-8 text-center border-t border-slate-100 pt-6">
+                <a href="/" class="text-sm font-medium text-slate-600 hover:text-blue-950 transition flex items-center justify-center gap-1">
+                    &larr; Kembali ke Beranda Utama
+                </a>
+            </div>
+
         </div>
-
-        <form action="{{ route('login') }}" method="POST" class="space-y-5">
-            @csrf <!-- Wajib ada ini di setiap form POST Laravel -->
-
-            <div>
-                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Email / ID Anggota</label>
-                <input type="email" id="email" name="email" required placeholder="kader@pii.or.id" 
-                    class="w-full px-4 py-2.5 rounded-xl border border-sky-200 focus:ring-2 focus:ring-sky-400 focus:border-sky-400 outline-none transition text-sm">
-            </div>
-
-            <div>
-                <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">Kata Sandi</label>
-                <input type="password" id="password" name="password" required placeholder="••••••••" 
-                    class="w-full px-4 py-2.5 rounded-xl border border-sky-200 focus:ring-2 focus:ring-sky-400 focus:border-sky-400 outline-none transition text-sm">
-            </div>
-
-            <div class="flex items-center justify-between text-sm">
-                <label class="flex items-center text-gray-600 cursor-pointer">
-                    <input type="checkbox" class="rounded text-sky-500 focus:ring-sky-400 border-sky-300 mr-2"> Ingat saya
-                </label>
-                <a href="#" class="text-sky-600 font-semibold hover:underline">Lupa password?</a>
-            </div>
-
-            <button type="submit" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 rounded-xl shadow-sm transition">
-                Masuk Sekarang
-            </button>
-        </form>
     </div>
-</div>
-@endsection
+
+</body>
+</html>

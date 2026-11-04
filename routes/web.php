@@ -1,23 +1,41 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes - PW PII Banten
+|--------------------------------------------------------------------------
+*/
+
+// Halaman Utama / Landing Page
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/tentang', function () {
+// Halaman Login (Tampilan & Submit)
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::post('/login', function () {
+    return redirect()->route('dashboard');
+});
+
+// Halaman Dashboard (Tampilan & Submit Form Administrasi / Laporan)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::post('/dashboard', function () {
+    // Kembali ke dashboard setelah submit form pengajuan surat / laporan kaderisasi
+    return redirect()->route('dashboard')->with('success', 'Form berhasil dikirim!');
+});
+
+// Halaman Publik Lainnya
+Route::get('/about', function () {
     return view('about');
 })->name('about');
-
-Route::get('/kepengurusan', function () {
-    return view('kepengurusan');
-})->name('kepengurusan');
-
-Route::get('/program-kerja', function () {
-    return view('program-kerja');
-})->name('program_kerja');
 
 Route::get('/berita', function () {
     return view('berita');
@@ -27,14 +45,14 @@ Route::get('/dokumen', function () {
     return view('dokumen');
 })->name('dokumen');
 
+Route::get('/kepengurusan', function () {
+    return view('kepengurusan');
+})->name('kepengurusan');
+
 Route::get('/kontak', function () {
     return view('kontak');
 })->name('kontak');
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::post('/login', function (Request $request) {
-    return redirect()->route('home')->with('success', 'Selamat datang kembali di Portal PW PII Banten!');
-});
+Route::get('/program-kerja', function () {
+    return view('program_kerja');
+})->name('program_kerja');
