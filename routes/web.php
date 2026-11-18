@@ -1,58 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SimaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes - PW PII Banten
-|--------------------------------------------------------------------------
-*/
-
-// Halaman Utama / Landing Page
+// Halaman Utama (Landing Page)
 Route::get('/', function () {
     return view('home');
-})->name('home');
-
-// Halaman Login (Tampilan & Submit)
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
-
-Route::post('/login', function () {
-    return redirect()->route('dashboard');
 });
 
-// Halaman Dashboard (Tampilan & Submit Form Administrasi / Laporan)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-Route::post('/dashboard', function () {
-    // Kembali ke dashboard setelah submit form pengajuan surat / laporan kaderisasi
-    return redirect()->route('dashboard')->with('success', 'Form berhasil dikirim!');
-});
-
-// Halaman Publik Lainnya
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/berita', function () {
-    return view('berita');
-})->name('berita');
-
-Route::get('/dokumen', function () {
-    return view('dokumen');
-})->name('dokumen');
-
+// Halaman Struktur Kepengurusan
 Route::get('/kepengurusan', function () {
     return view('kepengurusan');
-})->name('kepengurusan');
+});
 
-Route::get('/kontak', function () {
-    return view('kontak');
-})->name('kontak');
+// Sistem Informasi Manajemen Anggota (SIMA)
+Route::get('/login', [SimaController::class, 'showLogin'])->name('sima.login');
+Route::post('/login', [SimaController::class, 'processLogin'])->name('sima.login.post');
 
-Route::get('/program-kerja', function () {
-    return view('program_kerja');
-})->name('program_kerja');
+Route::prefix('sima')->group(function () {
+    Route::get('/login', [SimaController::class, 'showLogin'])->name('sima.login.alt');
+    Route::get('/logout', [SimaController::class, 'logout'])->name('sima.logout');
+    Route::get('/dashboard', [SimaController::class, 'dashboard'])->name('sima.dashboard');
+
+    // Aksi Kader
+    Route::post('/surat-kader', [SimaController::class, 'storeSuratKader'])->name('sima.surat.kader');
+    Route::get('/cetak-kta', [SimaController::class, 'cetakKta'])->name('sima.cetak.kta');
+    Route::get('/cetak-surat/{id}', [SimaController::class, 'cetakSurat'])->name('sima.cetak.surat');
+
+    // Aksi Pengurus Daerah
+    Route::post('/surat-daerah', [SimaController::class, 'storeSuratDaerah'])->name('sima.surat.daerah');
+    Route::post('/laporan-daerah', [SimaController::class, 'storeLaporanDaerah'])->name('sima.laporan.daerah');
+    Route::get('/laporan-daerah/delete/{id}', [SimaController::class, 'deleteLaporanDaerah'])->name('sima.laporan.delete');
+
+    // Aksi Artikel
+    Route::post('/artikel', [SimaController::class, 'storeArticle'])->name('sima.artikel.store');
+    Route::get('/artikel/delete/{id}', [SimaController::class, 'deleteArticle'])->name('sima.artikel.delete');
+});
